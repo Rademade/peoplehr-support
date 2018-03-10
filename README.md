@@ -1,5 +1,7 @@
 # PeopleHR support scripts
 
-1. Update avalible vacations on PeopleHR
-https://rademade.peoplehr.net/Pages/LeftSegment/System.aspx
-`export PEOPLEHR_API_KEY="" && ruby add-vacations.rb`
+### Update avalible vacations on PeopleHR
+Get API key – https://rademade.peoplehr.net/Pages/LeftSegment/System.aspx
+```
+export PEOPLEHR_API_KEY="" && ruby add-vacations.rb
+```
