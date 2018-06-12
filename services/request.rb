@@ -31,14 +31,21 @@ def update_holidays(employee_id, days)
   })
 end
 
-def send_request(url, data)
+def send_request(url, data, opts = {}, repeat = 0)
   uri = URI(url)
   http = Net::HTTP.new(uri.host, uri.port)
   http.use_ssl = true
   req = Net::HTTP::Post.new(uri.path, 'Content-Type' => 'application/json')
   req.body = data.to_json
   res = http.request(req)
-  JSON.parse(res.body)
+  result = JSON.parse(res.body)
+  if result["isError"] && repeat < 3
+    # TODO make que. Add redis
+    p result
+    sleep 60
+    result = send_request(url, data, opts, repeat + 1)
+  end
+  result
 rescue => e
   p "Error #{e.message}"
   {}
