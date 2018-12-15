@@ -21,13 +21,23 @@ def load_holidays(employee_id)
 
 end
 
-def update_holidays(employee_id, days)
+def update_this_year_holidays(employee_id, days)
   send_request('https://api.peoplehr.net/HolidayEntitlements', {
     'Action': 'UpdateHolidayEntitlement',
     'APIKey': API_KEY,
     'EmployeeId': employee_id,
     'EntitlementThisYear': days.to_f.to_s,
     'ReasonForChange': 'Update service period'
+  })
+end
+
+def update_next_year_holidays(employee_id, days)
+  send_request('https://api.peoplehr.net/HolidayEntitlements', {
+      'Action': 'UpdateHolidayEntitlement',
+      'APIKey': API_KEY,
+      'EmployeeId': employee_id,
+      'EntitlementNextYear':  days.to_f.to_s,
+      'ReasonForChange': 'Update service period'
   })
 end
 

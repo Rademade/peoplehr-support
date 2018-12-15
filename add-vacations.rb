@@ -18,7 +18,8 @@ members.each_with_index do |member, index|
   days_count = HolidaysCalculation.new(member, holidays_collection).available_days
 
   # Update current member state
-  update_holidays(member.id, days_count)
+  update_this_year_holidays(member.id, days_count)
+  # update_next_year_holidays(member.id, days_count)
 
   # Output
   p "[#{index+1}/#{members.length}] #{member.full_name} updated to #{days_count}"

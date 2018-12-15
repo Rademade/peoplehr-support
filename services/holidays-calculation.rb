@@ -3,7 +3,7 @@ class HolidaysCalculation
   attr_reader :member, :holidays
 
   def available_days
-    return 0 if member.working_months < 6
+    return 0 if member.working_months < 3
     member.working_months - holidays.past_years_booked_days
   end
 
